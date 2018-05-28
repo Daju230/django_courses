@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+	<div id="pagewrap">
+		{% if messages %}
+			<ul class="messages">
+    		{% for message in messages %}
+    			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    		{% endfor %}
+			</ul>
+		{% endif %}
+		<h2>Add a new course</h2>
+		<div class="col-1-2">
+			<form action="/main/add_course" method="POST">
+				{% csrf_token %}
+				<label for="name">Name:</label>
+                <input type="text" name="name">
+
+                <label for="Description">Description:</label>
+                <textarea name="description"></textarea>
+                
+                <input type="submit" value="Add" class="button">
+			</form>
+		</div>
+		<div class="col-1-2">
+			<table>
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Description</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ course.name }}</a></td>
+                            <td>{{ course.description.description }}</td>
+                            <td>{{ course.created_at }}</td>
+                            <td><a href="/main/destroy/{{ course.id }}">Remove</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Confirm Delete</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+	<div id="pagewrap">
+		<h2>Are you sure you want to delete the following course?</h2>
+		<p>Name: {{ course.name }}</p>
+		<p>Description: {{ course.description.description }}</p>
+
+		<a href="/" class="btn btn-warning">No</a> <a href="/main/destroy/{{ course.id }}/destroy" class="btn btn-success">Yes! I want to delete this</a>
+	</div>
+</body>
+</html>
